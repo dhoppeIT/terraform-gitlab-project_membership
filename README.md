@@ -30,7 +30,7 @@ module "gitlab_project" {
 
 module "gitlab_user" {
   source  = "gitlab.com/terraform-child-modules-48151/terraform-gitlab-user/local"
-  version = "1.1.2"
+  version = "1.2.0"
 
   name     = "John Doe"
   username = "jdoe"
@@ -40,10 +40,10 @@ module "gitlab_user" {
 
 module "gitlab_project_membership" {
   source  = "gitlab.com/terraform-child-modules-48151/terraform-gitlab-project-membership/local"
-  version = "1.0.0"
+  version = "1.1.0"
 
-  project      = data.gitlab_project.this.id
-  user_id      = data.gitlab_user.this.user_id
+  project      = module.gitlab_project.id
+  user_id      = module.gitlab_user.id
   access_level = "owner"
 }
 ```
@@ -78,6 +78,7 @@ No modules.
 |------|-------------|------|---------|:--------:|
 | <a name="input_access_level"></a> [access\_level](#input\_access\_level) | The access level for the member | `string` | n/a | yes |
 | <a name="input_expires_at"></a> [expires\_at](#input\_expires\_at) | Expiration date for the project membership | `string` | `null` | no |
+| <a name="input_member_role_id"></a> [member\_role\_id](#input\_member\_role\_id) | The ID of a custom member role | `number` | `null` | no |
 | <a name="input_project"></a> [project](#input\_project) | The ID or URL-encoded path of the project | `string` | n/a | yes |
 | <a name="input_user_id"></a> [user\_id](#input\_user\_id) | The id of the user | `number` | n/a | yes |
 

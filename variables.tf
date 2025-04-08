@@ -23,3 +23,9 @@ variable "expires_at" {
   default     = null
   description = "Expiration date for the project membership"
 }
+
+variable "member_role_id" {
+  type        = number
+  default     = null
+  description = "The ID of a custom member role"
+}
